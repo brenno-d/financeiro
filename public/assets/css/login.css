@@ -1,0 +1,147 @@
+
+:root {
+    --verde-claro: #e2f8d5;
+    --roxo-escuro: #160b3d;
+    --lilas: #cda7ff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #171717;
+}
+
+.painel-esquerdo {
+    background-color: var(--verde-claro);
+    display: flex;
+    align-items: flex-start;
+    padding: 0 3.5rem;
+}
+
+.texto-apresentacao {
+    margin-top: 170px;
+    color: var(--roxo-escuro);
+}
+
+.texto-apresentacao h1 {
+    font-size: clamp(2.5rem, 3.4vw, 3.5rem);
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -1.5px;
+    margin-bottom: 12px;
+}
+
+.texto-apresentacao p {
+    font-size: clamp(2.5rem, 3.4vw, 3.5rem);
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -1.5px;
+}
+
+.painel-direito {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+}
+
+.form-label {
+    font-size: 14px;
+    margin-bottom: 7px;
+}
+
+.form-control {
+    height: 36px;
+    border: 1px solid #dedede;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 14px;
+}
+
+.form-control::placeholder {
+    color: #b6b6b6;
+}
+
+.form-control:focus {
+    border-color: var(--lilas);
+    box-shadow: 0 0 0 0.2rem rgba(205,167,255,.15);
+}
+
+.btn-entrar {
+    width: 194px;
+    height: 49px;
+    border: 1px solid var(--lilas);
+    border-radius: 7px;
+    background: white;
+    color: #171717;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-entrar:hover {
+    background-color: var(--roxo-escuro);
+    color: white;
+    border-color: var(--roxo-escuro);
+}
+
+.btn-entrar:disabled {
+    opacity: 0.6;
+}
+
+.texto-cadastro {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.texto-cadastro a {
+    color: #b995ff;
+    text-decoration: none;
+}
+
+.texto-cadastro a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 992px) {
+    .painel-esquerdo {
+        width: 32%;
+    }
+
+    .painel-direito {
+        width: 68%;
+    }
+}
+
+@media (max-width: 991px) {
+    .painel-esquerdo {
+        padding: 35px 25px;
+    }
+
+    .texto-apresentacao {
+        margin-top: 0;
+    }
+
+    .texto-apresentacao h1,
+    .texto-apresentacao p {
+        font-size: 2rem;
+    }
+
+    .painel-direito {
+        min-height: 65vh;
+        padding: 40px 24px;
+    }
+
+    .login-container {
+        max-width: 480px;
+    }
+}

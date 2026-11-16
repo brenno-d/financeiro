@@ -1,0 +1,182 @@
+
+.cadastro-container {
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+}
+
+.cadastro-titulo {
+    color: #30213f;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.cadastro-subtitulo {
+    color: #777;
+    font-size: 15px;
+    margin-bottom: 32px;
+}
+
+.cadastro-container .form-label {
+    color: #30213f;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.cadastro-container .form-control {
+    width: 100%;
+    height: 48px;
+    border: 1px solid #d6d6d6;
+    border-radius: 9px;
+    padding: 12px 15px;
+    font-size: 15px;
+    box-shadow: none;
+}
+
+.cadastro-container .form-control:focus {
+    border-color: #bca5dc;
+    box-shadow: 0 0 0 3px rgba(188, 165, 220, 0.15);
+}
+
+.btn-cadastro {
+    min-width: 194px;
+    height: 49px;
+    background: white;
+    color: #30213f;
+    border: 2px solid #c5afe4;
+    border-radius: 9px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-cadastro:hover {
+    background: #f3ecfc;
+}
+
+.btn-cadastro:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.login-link {
+    margin-top: 24px;
+    color: #555;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #a78bc9;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 991px) {
+    .cadastro-container {
+        max-width: 480px;
+        padding: 32px 20px;
+    }
+}
+/* Estrutura principal */
+.auth-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Painel verde esquerdo */
+.auth-aside {
+    width: 32%;
+    min-height: 100vh;
+    background-color: #e2f8d5;
+    display: flex;
+    align-items: flex-start;
+    padding: 170px 55px 50px;
+    flex-shrink: 0;
+}
+
+.aside-content {
+    width: 100%;
+}
+
+/* Título principal */
+.aside-content h1 {
+    font-size: clamp(36px, 3.5vw, 58px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #30213f;
+    margin-bottom: 45px;
+}
+
+/* Texto secundário */
+.aside-content p {
+    font-size: clamp(26px, 2.6vw, 43px);
+    font-weight: 300;
+    line-height: 1.3;
+    color: #30213f;
+}
+
+/* Área branca do formulário */
+.auth-main {
+    width: 68%;
+    min-height: 100vh;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 35px;
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+    .auth-aside {
+        width: 35%;
+        padding: 100px 25px 40px;
+    }
+
+    .auth-main {
+        width: 65%;
+    }
+
+    .aside-content h1 {
+        font-size: 36px;
+    }
+
+    .aside-content p {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 767px) {
+    .auth-layout {
+        flex-direction: column;
+    }
+
+    .auth-aside {
+        width: 100%;
+        min-height: auto;
+        padding: 35px 25px;
+    }
+
+    .aside-content h1 {
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+
+    .aside-content p {
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .auth-main {
+        width: 100%;
+        min-height: auto;
+        flex: 1;
+        padding: 35px 20px;
+    }
+}
