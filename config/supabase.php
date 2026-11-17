@@ -8,7 +8,6 @@ $dotenv = Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->safeLoad();
 $dotenv->required(['SUPABASE_URL', 'SUPABASE_KEY'])->notEmpty();
 
-// Aceita tanto a URL do projeto quanto a URL copiada da API REST.
 $supabaseUrl = preg_replace('~/rest/v1$~', '', rtrim(trim($_ENV['SUPABASE_URL']), '/'));
 $urlParts = parse_url($supabaseUrl);
 
@@ -26,3 +25,18 @@ if (
 
 define('SUPABASE_URL', rtrim($supabaseUrl, '/'));
 define('SUPABASE_KEY', trim($_ENV['SUPABASE_KEY']));
+
+$authRedirectUrl = trim($_ENV['SUPABASE_AUTH_REDIRECT_URL'] ?? '');
+$authRedirectParts = parse_url($authRedirectUrl);
+
+if (
+    !filter_var($authRedirectUrl, FILTER_VALIDATE_URL) ||
+    !in_array($authRedirectParts['scheme'] ?? '', ['http', 'https'], true) ||
+    !empty($authRedirectParts['user']) ||
+    !empty($authRedirectParts['pass']) ||
+    !empty($authRedirectParts['fragment'])
+) {
+    throw new RuntimeException('Configure SUPABASE_AUTH_REDIRECT_URL com a URL da tela de login.');
+}
+
+define('SUPABASE_AUTH_REDIRECT_URL', $authRedirectUrl);

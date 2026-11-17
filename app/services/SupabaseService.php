@@ -1,17 +1,13 @@
 <?php
 
-require_once __DIR__ . '/../config/supabase.php';
+require_once __DIR__ . '/../../config/supabase.php';
 
 class SupabaseService
 {
-    private string $url;
-    private string $key;
     private ?string $token;
 
     public function __construct(?string $token = null)
     {
-        $this->url = SUPABASE_URL;
-        $this->key = SUPABASE_KEY;
         $this->token = $token;
     }
 
@@ -21,7 +17,7 @@ class SupabaseService
         array $parametros = [],
         ?array $dados = null
     ): array {
-        $url = $this->url . $endpoint;
+        $url = SUPABASE_URL . $endpoint;
 
         if ($parametros) {
             $url .= '?' . http_build_query(
@@ -33,7 +29,7 @@ class SupabaseService
         }
 
         $headers = [
-            'apikey: ' . $this->key,
+            'apikey: ' . SUPABASE_KEY,
             'Content-Type: application/json',
             'Accept: application/json',
             'Prefer: return=representation'
@@ -73,22 +69,26 @@ class SupabaseService
 
         return [
             'status' => $status,
-            'dados' => $resposta !== ''
-                ? json_decode($resposta, true)
-                : null
+            'dados' => json_decode($resposta, true)
         ];
     }
 
     public function auth(
         string $endpoint,
-        array $dados
+        array $dados,
+        array $parametros = []
     ): array {
         return $this->request(
             'POST',
             '/auth/v1/' . $endpoint,
-            [],
+            $parametros,
             $dados
         );
+    }
+
+    public function rpc(string $funcao, array $dados = []): array
+    {
+        return $this->request('POST', '/rest/v1/rpc/' . $funcao, [], $dados ?: null);
     }
 
     public function select(
