@@ -17,7 +17,15 @@ return [
     'dashboard' => [
         'GET' => [DashboardController::class, 'index']
     ],
+    'visao-geral' => ['GET' => [DashboardController::class, 'index']],
+    'extrato' => ['GET' => [DashboardController::class, 'index']],
+    'contas' => ['GET' => [DashboardController::class, 'index']],
+    'conta' => ['GET' => [DashboardController::class, 'index']],
     'api/entradas' => [
         'GET' => [EntradaController::class, 'index']
+    ],
+    'api/dashboard' => [
+        'GET' => [DashboardApiController::class, 'index'],
+        'POST' => [DashboardApiController::class, 'salvar']
     ]
 ];

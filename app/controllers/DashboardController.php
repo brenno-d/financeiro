@@ -17,6 +17,15 @@ class DashboardController
             'UTF-8'
         );
 
+        $pagina = $_GET['rota'] ?? 'visao-geral';
+        $titulos = ['visao-geral' => 'Visão geral', 'extrato' => 'Extrato', 'contas' => 'Contas', 'conta' => 'Detalhes da conta', 'dashboard' => 'Dashboard'];
+        $pagina = isset($titulos[$pagina]) ? $pagina : 'visao-geral';
+        $titulo = $titulos[$pagina];
+
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
         require __DIR__ . '/../views/dashboard/index.php';
     }
 }

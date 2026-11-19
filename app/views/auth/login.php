@@ -17,6 +17,7 @@ if (!defined('APP_STARTED')) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet">
 
+    <link rel="stylesheet" href="assets/css/fonts.css">
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
 
@@ -33,8 +34,7 @@ if (!defined('APP_STARTED')) {
 
                     <p>Cuide do seu<br>
                         dinheiro com<br>
-                        &lt;nome do<br>
-                        site&gt;</p>
+                        Finanças.</p>
                 </div>
             </aside>
 
@@ -99,11 +99,6 @@ if (!defined('APP_STARTED')) {
                                     Cadastre-se
                                 </a>
                             </p>
-                            <button type="button"
-                                id="btnReenviarConfirmacao"
-                                class="btn btn-link btn-sm">
-                                Reenviar confirmação de email
-                            </button>
                         </div>
 
                     </form>
@@ -117,7 +112,6 @@ if (!defined('APP_STARTED')) {
         const form = document.getElementById('formLogin');
         const mensagem = document.getElementById('mensagem');
         const botao = document.getElementById('btnEntrar');
-        const botaoReenviar = document.getElementById('btnReenviarConfirmacao');
         const csrfToken = <?= json_encode($_SESSION['csrf_token']) ?>;
         const retornoAuth = new URLSearchParams(window.location.hash.slice(1));
 
@@ -134,42 +128,6 @@ if (!defined('APP_STARTED')) {
         if (retornoAuth.has('error') || retornoAuth.has('access_token')) {
             window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
-
-        botaoReenviar.addEventListener('click', async () => {
-            const campoEmail = document.getElementById('email');
-
-            if (!campoEmail.reportValidity()) return;
-
-            botaoReenviar.disabled = true;
-            botaoReenviar.textContent = 'Enviando...';
-
-            try {
-                const resposta = await fetch('index.php?rota=reenviar-confirmacao', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-Token': csrfToken
-                    },
-                    credentials: 'same-origin',
-                    body: JSON.stringify({ email: campoEmail.value.trim() })
-                });
-
-                const dados = await resposta.json();
-
-                if (!resposta.ok) {
-                    throw new Error(dados.erro || 'Não foi possível reenviar a confirmação.');
-                }
-
-                mensagem.textContent = dados.mensagem;
-                mensagem.className = 'alert alert-success';
-            } catch (erro) {
-                mensagem.textContent = erro.message;
-                mensagem.className = 'alert alert-danger';
-            } finally {
-                botaoReenviar.disabled = false;
-                botaoReenviar.textContent = 'Reenviar confirmação de email';
-            }
-        });
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -204,7 +162,7 @@ if (!defined('APP_STARTED')) {
                     );
                 }
 
-                window.location.href = 'index.php?rota=dashboard';
+                window.location.href = 'index.php?rota=visao-geral';
 
             } catch (erro) {
                 mensagem.textContent = erro.message;

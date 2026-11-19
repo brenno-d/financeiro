@@ -17,7 +17,7 @@ class AuthController
     private function exibirFormulario(string $tela): void
     {
         if (AuthSession::autenticado()) {
-            header('Location: index.php?rota=dashboard');
+            header('Location: index.php?rota=visao-geral');
             exit;
         }
 

@@ -12,6 +12,7 @@ if (!defined('APP_STARTED')) {
     <title>Criar conta</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fonts.css">
     <link rel="stylesheet" href="assets/css/login.css">
     <link rel="stylesheet" href="assets/css/cadastro.css">
 </head>
@@ -21,7 +22,7 @@ if (!defined('APP_STARTED')) {
             <aside class="col-lg-4 painel-esquerdo">
                 <div class="texto-apresentacao">
                     <h1>Saiba pra<br>onde seu<br>dinheiro vai</h1>
-                    <p>Cuide do seu<br>dinheiro com<br>&lt;nome do<br>site&gt;</p>
+                    <p>Cuide do seu<br>dinheiro com<br>Finanças.</p>
                 </div>
             </aside>
 
